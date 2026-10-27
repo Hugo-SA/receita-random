@@ -21,3 +21,10 @@ A interface também recebeu algumas melhorias. O layout foi reorganizado para de
 Além dos aspectos técnicos, este projeto serviu como um exercício de boas práticas de desenvolvimento, mantendo a separação entre estrutura (HTML), apresentação (CSS) e lógica (JavaScript), tornando o código mais organizado, reutilizável e fácil de manter.
 
 Ao final do desenvolvimento, o projeto consolidou conhecimentos importantes sobre consumo de APIs, manipulação dinâmica do DOM, programação assíncrona, organização de código front-end e construção de interfaces web utilizando apenas tecnologias nativas, sem a utilização de frameworks.
+
+## Como executar localmente
+
+1. Clone o repositório: `git clone <url-do-repositório>`
+2. Entre na pasta do projeto.
+3. Abra o arquivo `index.html` no navegador (não é necessário instalar nada).
+4. Clique em **Receita Nova!!** para sortear uma receita.
