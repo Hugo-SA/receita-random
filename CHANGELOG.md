@@ -3,6 +3,11 @@
 Todas as mudanças relevantes deste projeto são registradas aqui.
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto adota [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [1.0.1]
+
+### Corrigido
+- Idioma da página declarado como inglês (`lang="en"`); agora é `pt-BR`, o que melhora a acessibilidade e a leitura por leitores de tela.
+
 ## [1.0.0]
 
 ### Adicionado
