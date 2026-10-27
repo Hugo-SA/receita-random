@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReceitaRandom </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="hero text-center">
+            <h1>Venha conferir uma receita nova!</h1>
+            <p>Está com fome? Clique no botão abaixo para descobrir uma receita nova!</p>
+
+            <button id="get_meal" class="button-primary">
+                Receita Nova!!
+            </button>
+        </header>
+
+        <section id="meal" class="meal">
+            <p class="placeholder">
+        🍽️ Clique em <strong>Receita Nova!</strong> para descobrir o prato de hoje.
+    </p>
+            <!-- A receita será inserida aqui pelo JavaScript -->
+        </section>
+
+    </main>
+
+    <aside class="social-panel-container">
+
+        <div class="social-panel">
+
+            <p>
+                Criado com
+                <i class="fa fa-heart"></i>
+                por
+                <a href="https://florin-pop.com" target="_blank">
+                    Hugo
+                </a>
+            </p>
+
+            <button class="close-btn" aria-label="Close panel">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <h4>Conecte-se comigo</h4>
+
+            <ul>
+
+                <li>
+                    <a href="https://github.com/Hugo-SA" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.linkedin.com/in/hugo-de-souza-almeida-64741a188/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </aside>
+
+    <button class="floating-btn">
+        Entre em contato
+    </button>
+
+    <footer class="floating-text">
+        Projeto feito a partir da idéia de Florinpop17 no desafio
+        <a href="https://www.florin-pop.com/blog/100-days-100-projects/" target="_blank">
+            #100Days100Projects
+        </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="index.js"></script>
+
+</body>
+
+</html>
