@@ -1,12 +1,19 @@
 const get_meal_btn = document.getElementById('get_meal');
 const meal_container = document.getElementById('meal');
 
-get_meal_btn.addEventListener('click', () => {
-	fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-		.then(res => res.json())
-		.then(res => {
-		createMeal(res.meals[0]);
-	});
+get_meal_btn.addEventListener('click', async () => {
+	try {
+		const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+		if (!res.ok) throw new Error(`HTTP ${res.status}`);
+		const data = await res.json();
+		createMeal(data.meals[0]);
+	} catch (error) {
+		console.error('Erro ao buscar a receita:', error);
+		meal_container.innerHTML = `
+			<p class="placeholder">
+				😕 Não foi possível carregar a receita agora. Tente novamente em instantes.
+			</p>`;
+	}
 });
 
 const createMeal = (meal) => {
