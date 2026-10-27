@@ -25,14 +25,22 @@
 
         <header class="hero text-center">
             <h1>Venha conferir uma receita nova!</h1>
-            <p>Está com fome? Clique no botão abaixo para descobrir uma receita nova!</p>
+            <p>Está com fome? Escolha uma categoria ou descubra uma receita nova!</p>
+
+            <div class="category-filter">
+                <label for="meal_category">Categoria da receita</label>
+                <select id="meal_category" disabled>
+                    <option value="">Todas as categorias</option>
+                </select>
+                <p id="category_status" class="category-status" role="status" aria-live="polite">Carregando categorias…</p>
+            </div>
 
             <button id="get_meal" class="button-primary">
                 Receita Nova!!
             </button>
         </header>
 
-        <section id="meal" class="meal">
+        <section id="meal" class="meal" aria-live="polite">
             <p class="placeholder">
         🍽️ Clique em <strong>Receita Nova!</strong> para descobrir o prato de hoje.
     </p>

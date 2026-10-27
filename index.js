@@ -1,18 +1,74 @@
 const get_meal_btn = document.getElementById('get_meal');
 const meal_container = document.getElementById('meal');
+const meal_category = document.getElementById('meal_category');
+const category_status = document.getElementById('category_status');
 
-get_meal_btn.addEventListener('click', async () => {
+const loadCategories = async () => {
 	try {
-		const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+		const res = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
 		if (!res.ok) throw new Error(`HTTP ${res.status}`);
 		const data = await res.json();
-		createMeal(data.meals[0]);
+		if (!Array.isArray(data.categories)) throw new Error('Resposta de categorias inválida');
+
+		data.categories.forEach(({ strCategory }) => {
+			const option = document.createElement('option');
+			option.value = strCategory;
+			option.textContent = strCategory;
+			meal_category.append(option);
+		});
+		meal_category.disabled = false;
+		category_status.textContent = '';
+	} catch (error) {
+		console.error('Erro ao buscar categorias:', error);
+		category_status.textContent = 'Não foi possível carregar as categorias. Você ainda pode sortear qualquer receita.';
+	}
+};
+
+loadCategories();
+
+get_meal_btn.addEventListener('click', async () => {
+	get_meal_btn.disabled = true;
+	const originalText = get_meal_btn.textContent;
+	get_meal_btn.textContent = 'Carregando…';
+
+	try {
+		let meal;
+		if (meal_category.value) {
+			const categoryUrl = new URL('https://www.themealdb.com/api/json/v1/1/filter.php');
+			categoryUrl.searchParams.set('c', meal_category.value);
+			const categoryRes = await fetch(categoryUrl);
+			if (!categoryRes.ok) throw new Error(`HTTP ${categoryRes.status}`);
+			const categoryData = await categoryRes.json();
+			if (!categoryData.meals?.length) {
+				meal_container.innerHTML = '<p class="placeholder">Nenhuma receita encontrada nesta categoria.</p>';
+				return;
+			}
+
+			const selectedMeal = categoryData.meals[Math.floor(Math.random() * categoryData.meals.length)];
+			const mealUrl = new URL('https://www.themealdb.com/api/json/v1/1/lookup.php');
+			mealUrl.searchParams.set('i', selectedMeal.idMeal);
+			const mealRes = await fetch(mealUrl);
+			if (!mealRes.ok) throw new Error(`HTTP ${mealRes.status}`);
+			const mealData = await mealRes.json();
+			meal = mealData.meals?.[0];
+		} else {
+			const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+			if (!res.ok) throw new Error(`HTTP ${res.status}`);
+			const data = await res.json();
+			meal = data.meals?.[0];
+		}
+
+		if (!meal) throw new Error('A API não retornou uma receita');
+		createMeal(meal);
 	} catch (error) {
 		console.error('Erro ao buscar a receita:', error);
 		meal_container.innerHTML = `
 			<p class="placeholder">
 				😕 Não foi possível carregar a receita agora. Tente novamente em instantes.
 			</p>`;
+	} finally {
+		get_meal_btn.disabled = false;
+		get_meal_btn.textContent = originalText;
 	}
 });
 

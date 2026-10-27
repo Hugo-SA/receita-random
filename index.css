@@ -17,6 +17,35 @@
     color:#5d4037;
 }
 
+.category-filter {
+    max-width: 320px;
+    margin: 0 auto 20px;
+    text-align: left;
+}
+
+.category-filter label {
+    display: block;
+    color: #5d4037;
+    font-weight: 600;
+}
+
+.category-filter select {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.category-status {
+    min-height: 1.5em;
+    margin: 5px 0 0;
+    color: #6d4c41;
+    font-size: 14px;
+}
+
+#category_status:empty {
+    display: none;
+}
+
 .hero p{
     color:#6d4c41;
     margin-bottom:20px;
